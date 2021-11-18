@@ -24,8 +24,37 @@ namespace LongestIncreasingSubsequence
             if (!AreAllIntegers(stringArray))
                 return string.Empty;
 
+            var numberArray = ConvertToLongArray(stringArray);
 
-            return string.Empty;
+            int longestLength, resultIndex, tempIndex;
+
+            longestLength = resultIndex = tempIndex = 0;
+
+            for (int i = 0; i < numberArray.Length; i++)
+            {
+                if (i > 0 && numberArray[i - 1] >= numberArray[i])
+                {
+                    tempIndex = i;
+                }
+
+                var indexRange = i - tempIndex + 1;
+
+                if (longestLength < indexRange)
+                {
+                    longestLength = indexRange;
+                    resultIndex = i;
+                }
+            }
+
+            var startIndex = resultIndex - longestLength + 1;
+
+            var endIndex = resultIndex + 1;
+
+            var tempOutput = numberArray.Skip(startIndex).Take(endIndex - startIndex);
+
+            var output = string.Join(Constants._delimeter, tempOutput);
+
+            return output;
         }
 
         /// <summary>
@@ -44,6 +73,16 @@ namespace LongestIncreasingSubsequence
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// This method converts string array into long array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private static long[] ConvertToLongArray(string[] input)
+        {
+            return Array.ConvertAll(input, s => long.Parse(s));
         }
 
     }
