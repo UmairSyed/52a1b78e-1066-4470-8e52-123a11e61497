@@ -5,9 +5,9 @@ namespace Test
     public class Tests
     {
         [Test]
-        public void PassTest()
+        public void FailTest()
         {
-            Assert.Pass();
+            Assert.Fail();
         }
     }
 }
