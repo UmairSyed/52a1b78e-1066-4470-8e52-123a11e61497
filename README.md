@@ -12,6 +12,14 @@ In project root folder, please run following commands to see the test results.
 docker-compose run test
 ```
 
+After running the above command, if you come across a message 
+
+```
+services.test must be a mapping
+```
+
+Please make sure you have disabled Docker compose V2
+
 ## CI Pipeline
 
 `GitHub Actions` is used as CI pipline. The workflow will be triggered when new push comes into the master branch. 
